@@ -17,79 +17,60 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f8ff;
-            color: #333;
+            background-color: #f5f7fb;
+            color: var(--dark);
         }
         
         .navbar {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
         }
         
         .hero-section {
-            background: linear-gradient(rgba(67, 97, 238, 0.8), rgba(58, 12, 163, 0.8)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1415&q=80');
+            background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
             background-size: cover;
             background-position: center;
             color: white;
             padding: 100px 0;
-            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 50px;
         }
         
-        .card {
+        .feature-card {
+            transition: transform 0.3s, box-shadow 0.3s;
             border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .template-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
             transition: transform 0.3s;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
         
-        .card:hover {
-            transform: translateY(-5px);
+        .template-card:hover {
+            transform: scale(1.03);
         }
         
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .user-type-card {
-            text-align: center;
-            padding: 30px 20px;
-            height: 100%;
-        }
-        
-        .step-card {
-            text-align: center;
-            padding: 25px;
-        }
-        
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
-        .pricing-card {
-            text-align: center;
-            padding: 30px;
-        }
-        
-        .price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary);
+        .template-card.selected {
+            border: 3px solid var(--primary);
         }
         
         .btn-primary {
             background-color: var(--primary);
             border-color: var(--primary);
+            border-radius: 50px;
+            padding: 10px 25px;
         }
         
         .btn-primary:hover {
@@ -97,37 +78,153 @@
             border-color: var(--secondary);
         }
         
-        .btn-outline-primary {
-            color: var(--primary);
-            border-color: var(--primary);
+        .btn-outline-light {
+            border-radius: 50px;
+            padding: 8px 20px;
         }
         
-        .btn-outline-primary:hover {
-            background-color: var(--primary);
-            color: white;
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            font-weight: 700;
         }
         
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 50px 0 20px;
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--primary);
+            margin: 15px auto 0;
+            border-radius: 2px;
         }
         
-        .database-option, .language-option {
-            padding: 15px;
-            border-radius: 8px;
+        .preview-container {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+        
+        .preview-header {
+            background: #f1f3f9;
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .preview-dots {
+            display: flex;
+        }
+        
+        .preview-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .preview-dot.red { background-color: #ff5f56; }
+        .preview-dot.yellow { background-color: #ffbd2e; }
+        .preview-dot.green { background-color: #27c93f; }
+        
+        .preview-iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+        
+        .builder-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .option-card {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
             margin-bottom: 15px;
             cursor: pointer;
             transition: all 0.3s;
         }
         
-        .database-option:hover, .language-option:hover {
-            background-color: #e9ecef;
+        .option-card:hover, .option-card.selected {
+            border-color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.05);
         }
         
-        .selected {
-            background-color: #e0f7fa;
-            border: 2px solid var(--success);
+        .login-modal .modal-content {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .login-form {
+            padding: 20px;
+        }
+        
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 20px;
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .facebook { background-color: #3b5998; }
+        .google { background-color: #db4a39; }
+        .twitter { background-color: #1da1f2; }
+        
+        footer {
+            background: linear-gradient(135deg, var(--secondary), var(--dark));
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 50px;
+        }
+        
+        .footer-links h5 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-links h5:after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: var(--success);
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
         }
     </style>
 </head>
@@ -149,314 +246,496 @@
                     <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
                 </ul>
                 <div class="d-flex">
-                    <a href="#" class="btn btn-outline-light me-2">Login</a>
-                    <a href="#" class="btn btn-light">Sign Up</a>
+                    <button class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                    <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section text-center">
         <div class="container">
-            <h1 class="display-4 fw-bold mb-4">Build Websites & Software For Everyone</h1>
-            <p class="lead mb-5">From beginners to developers - create, deploy, and manage your web projects with ease</p>
-            <a href="#builder" class="btn btn-light btn-lg px-5 py-3">Start Building Now</a>
-        </div>
-    </section>
-
-    <!-- User Types -->
-    <section class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Designed For All User Types</h2>
-                <p class="text-muted">Whether you're a beginner or an expert, we have the right tools for you</p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card user-type-card">
-                        <i class="fas fa-laptop-code feature-icon"></i>
-                        <h3>Developers</h3>
-                        <p>Full control with advanced features, code editing, and deployment options.</p>
-                        <ul class="list-unstyled text-start">
-                            <li><i class="fas fa-check text-success me-2"></i> Code export</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Docker integration</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Multiple database support</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card user-type-card">
-                        <i class="fas fa-user feature-icon"></i>
-                        <h3>Non-Technical</h3>
-                        <p>Drag-and-drop interface with pre-built templates and easy customization.</p>
-                        <ul class="list-unstyled text-start">
-                            <li><i class="fas fa-check text-success me-2"></i> No coding required</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Pre-designed templates</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Simple deployment</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card user-type-card">
-                        <i class="fas fa-cogs feature-icon"></i>
-                        <h3>Technical Users</h3>
-                        <p>Balance of simplicity and power with customization options.</p>
-                        <ul class="list-unstyled text-start">
-                            <li><i class="fas fa-check text-success me-2"></i> Custom code injection</li>
-                            <li><i class="fas fa-check text-success me-2"></i> API access</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Advanced settings</li>
-                        </ul>
-                    </div>
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <h1 class="display-4 fw-bold mb-4">Build Your Dream Website in Minutes</h1>
+                    <p class="lead mb-5">The most powerful website builder with live preview, multiple programming languages, and stunning templates.</p>
+                    <button class="btn btn-light btn-lg px-5 py-3 fw-bold" data-bs-toggle="modal" data-bs-target="#registerModal">Get Started Now</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Builder Interface -->
-    <section id="builder" class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Create Your Project</h2>
-                <p class="text-muted">Follow these simple steps to build and deploy your website or application</p>
+    <!-- Website Type Selection -->
+    <section class="container mb-5">
+        <h2 class="text-center section-title">Select Your Website Type</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="option-card text-center" data-type="static">
+                    <i class="fas fa-file-code display-4 mb-3 text-primary"></i>
+                    <h3>Static Website</h3>
+                    <p>Simple, fast-loading websites with fixed content. Perfect for portfolios, brochures, and landing pages.</p>
+                </div>
             </div>
-            
-            <div class="row g-4">
-                <!-- Step 1 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card step-card">
-                        <div class="step-number">1</div>
-                        <h4>Choose Template</h4>
-                        <p>Select from hundreds of professionally designed templates</p>
-                        <div class="mt-3">
-                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#templatesModal">Browse Templates</button>
-                        </div>
+            <div class="col-md-6 mb-4">
+                <div class="option-card text-center" data-type="dynamic">
+                    <i class="fas fa-database display-4 mb-3 text-primary"></i>
+                    <h3>Dynamic Website</h3>
+                    <p>Interactive websites with user authentication, databases, and personalized content. Ideal for web applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programming Language Selection -->
+    <section class="container mb-5">
+        <h2 class="text-center section-title">Choose Your Technology Stack</h2>
+        <div class="row">
+            <div class="col-md-3 col-6 mb-4">
+                <div class="option-card text-center" data-lang="csharp">
+                    <i class="fab fa-windows display-4 mb-3 text-primary"></i>
+                    <h4>C#</h4>
+                    <p class="small">ASP.NET, MVC, Blazor</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="option-card text-center" data-lang="cpp">
+                    <i class="fas fa-copyright display-4 mb-3 text-primary"></i>
+                    <h4>C++</h4>
+                    <p class="small">High-performance applications</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="option-card text-center" data-lang="python">
+                    <i class="fab fa-python display-4 mb-3 text-primary"></i>
+                    <h4>Python</h4>
+                    <p class="small">Django, Flask, FastAPI</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="option-card text-center" data-lang="javascript">
+                    <i class="fab fa-js display-4 mb-3 text-primary"></i>
+                    <h4>JavaScript</h4>
+                    <p class="small">Node.js, Express, React</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Template Selection -->
+    <section class="container mb-5">
+        <h2 class="text-center section-title">Choose a Template</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="template-card" data-template="business">
+                    <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Business Template">
+                    <div class="card-body">
+                        <h5 class="card-title">Business</h5>
+                        <p class="card-text">Professional design for corporate websites</p>
                     </div>
                 </div>
-                
-                <!-- Step 2 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card step-card">
-                        <div class="step-number">2</div>
-                        <h4>Select Database</h4>
-                        <p>Choose your preferred database technology</p>
-                        <div class="mt-3">
-                            <div class="database-option selected">
-                                <i class="fas fa-database me-2"></i> MySQL
-                            </div>
-                            <div class="database-option">
-                                <i class="fas fa-server me-2"></i> SQL Server
-                            </div>
-                        </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="template-card" data-template="portfolio">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Portfolio Template">
+                    <div class="card-body">
+                        <h5 class="card-title">Portfolio</h5>
+                        <p class="card-text">Showcase your work with style</p>
                     </div>
                 </div>
-                
-                <!-- Step 3 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card step-card">
-                        <div class="step-number">3</div>
-                        <h4>Programming Language</h4>
-                        <p>Select your preferred tech stack</p>
-                        <div class="mt-3">
-                            <div class="language-option selected">
-                                <i class="fab fa-python me-2"></i> Python
-                            </div>
-                            <div class="language-option">
-                                <i class="fab fa-java me-2"></i> Java
-                            </div>
-                            <div class="language-option">
-                                <i class="fab fa-microsoft me-2"></i> .NET
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Step 4 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card step-card">
-                        <div class="step-number">4</div>
-                        <h4>Deploy & Export</h4>
-                        <p>Deploy instantly or export your code</p>
-                        <div class="mt-3">
-                            <button class="btn btn-primary w-100 mb-2">Deploy Now</button>
-                            <button class="btn btn-outline-primary w-100">Export Code (Premium)</button>
-                        </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="template-card" data-template="ecommerce">
+                    <img src="https://images.unsplash.com/photo-1563014959-7aaa83350992?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="E-commerce Template">
+                    <div class="card-body">
+                        <h5 class="card-title">E-commerce</h5>
+                        <p class="card-text">Sell products with a beautiful storefront</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Powerful Features</h2>
-                <p class="text-muted">Everything you need to build professional websites and applications</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card p-4 text-center">
-                        <i class="fas fa-cloud-upload-alt feature-icon"></i>
-                        <h4>Easy Deployment</h4>
-                        <p>Deploy your website or application with a single click on our secure platform.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-4 text-center">
-                        <i class="fas fa-database feature-icon"></i>
-                        <h4>Database Integration</h4>
-                        <p>Choose between MySQL, SQL Server, or other databases for different parts of your project.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-4 text-center">
-                        <i class="fab fa-docker feature-icon"></i>
-                        <h4>Docker Containers</h4>
-                        <p>We use Docker to containerize your applications for consistency across environments.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-4 text-center">
-                        <i class="fas fa-file-archive feature-icon"></i>
-                        <h4>Code Export</h4>
-                        <p>Download your complete project as a ZIP file (premium feature).</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-4 text-center">
-                        <i class="fas fa-mobile-alt feature-icon"></i>
-                        <h4>Responsive Design</h4>
-                        <p>All templates are mobile-friendly and look great on any device.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-4 text-center">
-                        <i class="fas fa-bolt feature-icon"></i>
-                        <h4>Fast Performance</h4>
-                        <p>Optimized for speed with CDN, caching, and optimized code output.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
+    <!-- Website Builder with Live Preview -->
+    <section class="container mb-5" id="websiteBuilder" style="display: none;">
+        <h2 class="text-center section-title">Build Your Website</h2>
+        <div class="builder-container">
             <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5>UniversalBuilder</h5>
-                    <p>Building the future of web development for everyone, from beginners to professionals.</p>
-                </div>
-                <div class="col-md-2 mb-4">
-                    <h5>Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Home</a></li>
-                        <li><a href="#" class="text-white">Templates</a></li>
-                        <li><a href="#" class="text-white">Features</a></li>
-                        <li><a href="#" class="text-white">Pricing</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2 mb-4">
-                    <h5>Legal</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Privacy Policy</a></li>
-                        <li><a href="#" class="text-white">Terms of Service</a></li>
-                        <li><a href="#" class="text-white">Cookie Policy</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <h5>Subscribe to Our Newsletter</h5>
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Your email">
-                        <button class="btn btn-primary">Subscribe</button>
+                <div class="col-md-6">
+                    <h4 class="mb-4">Customize Your Template</h4>
+                    <div class="mb-3">
+                        <label for="siteTitle" class="form-label">Site Title</label>
+                        <input type="text" class="form-control" id="siteTitle" placeholder="Enter your site title">
                     </div>
-                    <div class="d-flex mt-3">
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    <div class="mb-3">
+                        <label for="primaryColor" class="form-label">Primary Color</label>
+                        <input type="color" class="form-control" id="primaryColor" value="#4361ee">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fontFamily" class="form-label">Font Family</label>
+                        <select class="form-select" id="fontFamily">
+                            <option value="Arial, sans-serif">Arial</option>
+                            <option value="Georgia, serif">Georgia</option>
+                            <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                            <option value="Verdana, sans-serif">Verdana</option>
+                            <option value="'Courier New', monospace">Courier New</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contentInput" class="form-label">Homepage Content</label>
+                        <textarea class="form-control" id="contentInput" rows="5" placeholder="Enter your homepage content here..."></textarea>
+                    </div>
+                    <button class="btn btn-primary w-100" id="publishBtn">Publish Website</button>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="mb-4">Live Preview</h4>
+                    <div class="preview-container">
+                        <div class="preview-header">
+                            <div class="preview-dots">
+                                <span class="preview-dot red"></span>
+                                <span class="preview-dot yellow"></span>
+                                <span class="preview-dot green"></span>
+                            </div>
+                        </div>
+                        <div class="preview-iframe-container">
+                            <iframe class="preview-iframe" id="livePreview"></iframe>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr class="bg-light">
-            <div class="text-center py-3">
-                <p class="mb-0">&copy; 2023 UniversalBuilder. All rights reserved.</p>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <!-- Templates Modal (would be populated with actual templates) -->
-    <div class="modal fade" id="templatesModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+    <!-- Features Section -->
+    <section class="container mb-5">
+        <h2 class="text-center section-title">Why Choose UniversalBuilder</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card card h-100">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-bolt display-4 mb-3 text-primary"></i>
+                        <h3 class="card-title">Lightning Fast</h3>
+                        <p class="card-text">Our optimized code ensures your website loads in milliseconds, improving user experience and SEO.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card card h-100">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-mobile-alt display-4 mb-3 text-primary"></i>
+                        <h3 class="card-title">Fully Responsive</h3>
+                        <p class="card-text">Your website will look great on any device, from desktops to smartphones, without extra effort.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card card h-100">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-lock display-4 mb-3 text-primary"></i>
+                        <h3 class="card-title">Secure Hosting</h3>
+                        <p class="card-text">Enterprise-grade security with SSL certificates, DDoS protection, and daily backups included.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Choose a Template</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h5 class="modal-title">Login to Your Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div class="card">
-                                <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Business Template">
-                                <div class="card-body">
-                                    <h5 class="card-title">Business</h5>
-                                    <p class="card-text">Professional design for corporate websites</p>
-                                    <button class="btn btn-sm btn-outline-primary">Select</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card">
-                                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="E-commerce Template">
-                                <div class="card-body">
-                                    <h5 class="card-title">E-commerce</h5>
-                                    <p class="card-text">Complete online store solution</p>
-                                    <button class="btn btn-sm btn-outline-primary">Select</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card">
-                                <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Portfolio Template">
-                                <div class="card-body">
-                                    <h5 class="card-title">Portfolio</h5>
-                                    <p class="card-text">Showcase your work creatively</p>
-                                    <button class="btn btn-sm btn-outline-primary">Select</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card">
-                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Blog Template">
-                                <div class="card-body">
-                                    <h5 class="card-title">Blog</h5>
-                                    <p class="card-text">Perfect for content creators</p>
-                                    <button class="btn btn-sm btn-outline-primary">Select</button>
-                                </div>
-                            </div>
-                        </div>
+                <div class="login-form">
+                    <div class="mb-3">
+                        <label for="loginEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100 mb-3" id="loginBtn">Login</button>
+                    <div class="text-center">
+                        <a href="#" class="text-decoration-none">Forgot password?</a>
+                    </div>
+                    <div class="social-login">
+                        <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn google"><i class="fab fa-google"></i></a>
+                        <a href="#" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create an Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="login-form">
+                    <div class="mb-3">
+                        <label for="registerName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="registerName" placeholder="Enter your full name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="registerEmail" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" placeholder="Create a password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerConfirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="registerConfirmPassword" placeholder="Confirm your password">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="termsAgree">
+                        <label class="form-check-label" for="termsAgree">I agree to the <a href="#">Terms of Service</a></label>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100 mb-3" id="registerBtn">Create Account</button>
+                    <div class="social-login">
+                        <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn google"><i class="fab fa-google"></i></a>
+                        <a href="#" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3><i class="fas fa-code me-2"></i>UniversalBuilder</h3>
+                    <p>The most powerful website builder with live preview, multiple programming languages, and stunning templates.</p>
+                </div>
+                <div class="col-md-2 mb-4 footer-links">
+                    <h5>Product</h5>
+                    <a href="#">Features</a>
+                    <a href="#">Templates</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Examples</a>
+                </div>
+                <div class="col-md-2 mb-4 footer-links">
+                    <h5>Company</h5>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="col-md-2 mb-4 footer-links">
+                    <h5>Support</h5>
+                    <a href="#">Help Center</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">API</a>
+                    <a href="#">Status</a>
+                </div>
+                <div class="col-md-2 mb-4 footer-links">
+                    <h5>Legal</h5>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Security</a>
+                    <a href="#">Compliance</a>
+                </div>
+            </div>
+            <div class="text-center mt-5 pt-3 border-top border-secondary">
+                <p>© 2023 UniversalBuilder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Simple interactivity for database and language selection
-        document.querySelectorAll('.database-option, .language-option').forEach(option => {
-            option.addEventListener('click', function() {
-                // Remove selected class from siblings
-                this.parentElement.querySelectorAll('.selected').forEach(item => {
-                    if (item !== this) item.classList.remove('selected');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize variables to store user selections
+            let websiteType = '';
+            let programmingLang = '';
+            let selectedTemplate = '';
+            
+            // Option card selection
+            const optionCards = document.querySelectorAll('.option-card');
+            optionCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove selected class from all cards in the same parent
+                    const parent = this.closest('.row');
+                    parent.querySelectorAll('.option-card').forEach(c => {
+                        c.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked card
+                    this.classList.add('selected');
+                    
+                    // Store selection based on data attribute
+                    if (this.dataset.type) {
+                        websiteType = this.dataset.type;
+                        checkSelections();
+                    } else if (this.dataset.lang) {
+                        programmingLang = this.dataset.lang;
+                        checkSelections();
+                    }
                 });
-                
-                // Toggle selected class on clicked element
-                this.classList.toggle('selected');
             });
+            
+            // Template selection
+            const templateCards = document.querySelectorAll('.template-card');
+            templateCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove selected class from all templates
+                    templateCards.forEach(c => c.classList.remove('selected'));
+                    
+                    // Add selected class to clicked template
+                    this.classList.add('selected');
+                    
+                    // Store selection
+                    selectedTemplate = this.dataset.template;
+                    checkSelections();
+                    
+                    // Update preview
+                    updatePreview();
+                });
+            });
+            
+            // Check if all selections are made
+            function checkSelections() {
+                if (websiteType && programmingLang && selectedTemplate) {
+                    document.getElementById('websiteBuilder').style.display = 'block';
+                    
+                    // Scroll to builder section
+                    document.getElementById('websiteBuilder').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+            
+            // Update live preview
+            function updatePreview() {
+                const title = document.getElementById('siteTitle').value || 'Your Site Title';
+                const color = document.getElementById('primaryColor').value;
+                const font = document.getElementById('fontFamily').value;
+                const content = document.getElementById('contentInput').value || 'Welcome to our website. Add your content here.';
+                
+                const preview = document.getElementById('livePreview');
+                const previewDoc = preview.contentDocument || preview.contentWindow.document;
+                
+                let htmlContent = `
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <style>
+                            body {
+                                font-family: ${font};
+                                margin: 0;
+                                padding: 20px;
+                                color: #333;
+                            }
+                            .header {
+                                background-color: ${color};
+                                color: white;
+                                padding: 20px;
+                                text-align: center;
+                                border-radius: 5px;
+                                margin-bottom: 20px;
+                            }
+                            .content {
+                                line-height: 1.6;
+                            }
+                            .btn {
+                                background-color: ${color};
+                                color: white;
+                                padding: 10px 20px;
+                                text-decoration: none;
+                                border-radius: 5px;
+                                display: inline-block;
+                                margin-top: 15px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="header">
+                            <h1>${title}</h1>
+                        </div>
+                        <div class="content">
+                            <p>${content.replace(/\n/g, '</p><p>')}</p>
+                            <a href="#" class="btn">Learn More</a>
+                        </div>
+                    </body>
+                    </html>
+                `;
+                
+                previewDoc.open();
+                previewDoc.write(htmlContent);
+                previewDoc.close();
+            }
+            
+            // Add event listeners for input changes
+            document.getElementById('siteTitle').addEventListener('input', updatePreview);
+            document.getElementById('primaryColor').addEventListener('input', updatePreview);
+            document.getElementById('fontFamily').addEventListener('change', updatePreview);
+            document.getElementById('contentInput').addEventListener('input', updatePreview);
+            
+            // Login functionality
+            document.getElementById('loginBtn').addEventListener('click', function() {
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                if (email && password) {
+                    alert('Login successful! Redirecting to dashboard...');
+                    // In a real application, you would authenticate and redirect
+                    $('#loginModal').modal('hide');
+                } else {
+                    alert('Please enter both email and password.');
+                }
+            });
+            
+            // Register functionality
+            document.getElementById('registerBtn').addEventListener('click', function() {
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('registerConfirmPassword').value;
+                const terms = document.getElementById('termsAgree').checked;
+                
+                if (!name || !email || !password || !confirmPassword) {
+                    alert('Please fill in all fields.');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match.');
+                    return;
+                }
+                
+                if (!terms) {
+                    alert('Please agree to the Terms of Service.');
+                    return;
+                }
+                
+                alert('Registration successful! Welcome to UniversalBuilder.');
+                // In a real application, you would create the account and redirect
+                $('#registerModal').modal('hide');
+            });
+            
+            // Publish functionality
+            document.getElementById('publishBtn').addEventListener('click', function() {
+                alert('Your website has been published successfully!');
+            });
+            
+            // Initialize preview with default values
+            updatePreview();
         });
     </script>
 </body>
